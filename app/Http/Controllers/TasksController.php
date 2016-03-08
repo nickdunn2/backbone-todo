@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use App\Task;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class TasksController extends Controller
 {
@@ -15,17 +15,7 @@ class TasksController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Task::all();
     }
 
     /**
@@ -36,7 +26,12 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $task = new Task;
+        $task->lane_id = $request->lane_id;
+        $task->description = $request->description;
+        $task->complete = $request->complete;
+        $task->save();
+        return $task;
     }
 
     /**
@@ -47,18 +42,7 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return Task::findOrFail($id);
     }
 
     /**
@@ -70,7 +54,12 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $task->lane_id = $request->lane_id;
+        $task->description = $request->description;
+        $task->complete = $request->complete;
+        $task->save();
+        return $task;
     }
 
     /**
@@ -81,6 +70,8 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $task->delete();
+        return $task;
     }
 }

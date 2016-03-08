@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use App\Lane;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class LanesController extends Controller
 {
@@ -15,17 +15,7 @@ class LanesController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Lane::all();
     }
 
     /**
@@ -36,7 +26,10 @@ class LanesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $lane = new Lane;
+        $lane->title = $request->title;
+        $lane->save();
+        return $lane;
     }
 
     /**
@@ -47,18 +40,7 @@ class LanesController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return Lane::findOrFail($id);
     }
 
     /**
@@ -70,7 +52,10 @@ class LanesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $lane = Lane::findOrFail($id);
+        $lane->title = $request->title;
+        $lane->save();
+        return $lane;
     }
 
     /**
@@ -81,6 +66,8 @@ class LanesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $lane = Lane::findOrFail($id);
+        $lane->delete();
+        return $lane;
     }
 }
