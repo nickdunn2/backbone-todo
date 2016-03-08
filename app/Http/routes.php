@@ -15,6 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['prefix' => 'api'], function () {
+    Route::resource('lanes', 'LanesController', [
+        'except' => ['create', 'edit']
+    ]);
+
+    Route::resource('tasks', 'TasksController', [
+        'except' => ['create', 'edit']
+    ]);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
