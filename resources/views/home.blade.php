@@ -23,7 +23,7 @@
 
     <div id="tasks">
         <script type="text/template" id="taskTemplate">
-            <span><%= description %></span> <button class="edit">Edit</button> <button class="delete">Delete</button>
+            <span><%= description %></span> <button class="delete">Delete</button>
         </script>
     </div>
 

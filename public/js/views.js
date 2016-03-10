@@ -69,7 +69,7 @@ App.Views.Task = Backbone.View.extend({
     },
 
     events: {
-        'click .edit': 'editTask',
+        'dblclick span': 'editTask',
         'click .delete': 'destroyTask'
     },
 
