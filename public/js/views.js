@@ -78,8 +78,7 @@ App.Views.Task = Backbone.View.extend({
         if (!editedTask) {
             return;
         }
-        this.model.set('description', editedTask);
-        this.model.save();
+        this.model.save({description: editedTask});
     },
 
     destroyTask: function() {
