@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function() {
+    return view('home');
+});
+
 Route::group(['prefix' => 'api'], function () {
     Route::resource('lanes', 'LanesController', [
         'except' => ['create', 'edit']
